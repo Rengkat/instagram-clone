@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .link {
+    @apply flex gap-5 items-center font-bold text-[1.1rem] md:my-8 lg:my-0 md:pr-5 lg:pr-0;
+  }
+  .link-name {
+    @apply md:hidden lg:block;
+  }
+  .side-bar {
+    @apply hidden md:block  lg:w-[15rem] fixed bottom-0 top-0 left-0 h-[100vh] border-r-2;
+  }
+}

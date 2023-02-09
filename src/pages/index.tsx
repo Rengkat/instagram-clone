@@ -1,0 +1,13 @@
+export { default as ShareLayout } from "../components/ShareLayout";
+export { default as ProtectedRoute } from "../components/ProtextedRoute";
+export { default as Search } from "../components/Search";
+export { default as Home } from "../pages/Home/Home";
+export { default as Create } from "../pages/Create/Create";
+export { default as Messages } from "../pages/Messages/Messages";
+export { default as Explore } from "../pages/Explore/Explore";
+export { default as Notifications } from "../pages/Notification/Notifications";
+export { default as Reels } from "../pages/Reels/Reels";
+export { default as Profile } from "../pages/Profile/Profile";
+export { default as SignUp } from "../pages/SignUp/SignUp";
+export { default as SignIn } from "../pages/SignUp/SignIn";
+export { default as ErrorRoute } from "../pages/ErrorRoute/ErrorRoute";
