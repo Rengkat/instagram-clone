@@ -14,6 +14,7 @@ import {
   SignIn,
   SignUp,
 } from "./pages";
+import SavedLogin from "./pages/SignUp/SavedLogin";
 const App = () => {
   return (
     <div>
@@ -36,6 +37,7 @@ const App = () => {
         </Route>
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/saved" element={<SavedLogin />} />
         <Route path="*" element={<ErrorRoute />} />
       </Routes>
     </div>
