@@ -1,18 +1,27 @@
 import { FaFacebookSquare } from "react-icons/all";
 import { Link } from "react-router-dom";
+import phoneFrame from "../../assets/home-phones.png";
+import people from "../../assets/screenshot4.png";
 
 const SignUp = () => {
   return (
     <div className="bg-gray-100">
       {/* flex for form and image */}
-      <div className="flex pt-3">
+      <div className="lg:w-[60%] flex pt-2 mx-auto">
         {/* image hidden on mobile */}
-        <div className="hidden md:flex ">
-          <div className="image"></div>
+        <div className="hidden lg:flex mt-10 relative ">
+          <div className="image">
+            <img src={phoneFrame} alt="" className="h-[90vh] w-[100%]" />
+            <img
+              src={people}
+              alt=""
+              className="h-[76vh] lg:w-[56%] xl:w-[55%] hidden xl:block absolute top-[1.78rem] lg:right-[3rem] xl:right-[3.4rem]"
+            />
+          </div>
         </div>
-        <form className="max-w-[22rem] mx-auto text-center ">
-          <div className="px-10 pt-8 pb-8 bg-white font-semibold text-gray-400  border-2 border-grey-400">
-            <h1 className="text-4xl font-extrabold pt-3 text-black pb-2">
+        <form className="max-w-[22rem] mx-auto lg:mx-0 text-center ">
+          <div className="px-10 pt-8 pb-8 bg-white font-semibold text-gray-400 border-2">
+            <h1 className="text-5xl font-light  pt-3 text-black pb-2 font-display">
               Instagram
             </h1>
 
