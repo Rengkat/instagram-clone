@@ -1,9 +1,27 @@
 import { FaFacebookSquare } from "react-icons/all";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import phoneFrame from "../../assets/home-phones.png";
 import people from "../../assets/screenshot4.png";
+import { useFormik } from "formik";
+import Firebase from "../../context/firebase";
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [userDetails, setUserDetails] = useState({
+    email,
+    userName,
+    password,
+  });
+  // console.log(userDetails);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setUserDetails({ email, userName, password });
+  };
+
   return (
     <div className="bg-gray-100">
       {/* flex for form and image */}
@@ -19,7 +37,9 @@ const SignUp = () => {
             />
           </div>
         </div>
-        <form className="max-w-[22rem] mx-auto lg:mx-0 text-center ">
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-[22rem] mx-auto lg:mx-0 text-center ">
           <div className="px-10 pt-8 pb-8 bg-white font-semibold text-gray-400 border-2">
             <h1 className="text-5xl font-light  pt-3 text-black pb-2 font-display">
               Instagram
@@ -44,12 +64,40 @@ const SignUp = () => {
             <div className="pt-3 pb-1 w-full">
               <input
                 className="input"
-                type="text"
-                placeholder="Mobile number or Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
               />
-              <input className="input" type="text" placeholder="Full Name" />
-              <input className="input" type="text" placeholder="Username" />
-              <input className="input" type="password" placeholder="Password" />
+              <input
+                className="input"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                type="text"
+                name="fullName"
+                id="name"
+                placeholder="Full Name"
+              />
+              <input
+                className="input"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+              />
+              <input
+                className="input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                name="password"
+                id=""
+                placeholder="Password"
+              />
             </div>
             <div className=" text-xs font-normal">
               <p className="my-2 px-2">
@@ -61,6 +109,7 @@ const SignUp = () => {
               </p>
             </div>
             <button
+              type="submit"
               className="w-full mt-2 bg-[#64bcf7] text-white rounded-lg font-semi py-1 px-12 flex justify-center items-center gap-2 mx-auto
             ">
               Sign up

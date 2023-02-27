@@ -9,7 +9,7 @@ import {
 import image from "../assets/image.jpg";
 const MobileNave = () => {
   return (
-    <div className="w-full border-t-2 px-10">
+    <div className="w-full border-t-[1px] border-gray-700 px-10">
       <div className="w-full flex justify-between p-5 items-center">
         <div>
           <NavLink to={"/home"}>

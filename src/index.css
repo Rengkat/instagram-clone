@@ -10,7 +10,7 @@
     @apply md:hidden lg:block;
   }
   .side-bar {
-    @apply hidden md:block  lg:w-[15rem] fixed bottom-0 top-0 left-0 h-[100vh] border-r-2;
+    @apply hidden md:block  lg:w-[15rem] fixed bottom-0 top-0 left-0 h-[100vh] border-r-[1px] border-gray-700;
   }
   .divider {
     @apply w-[50%] h-[1px] bg-gray-300;

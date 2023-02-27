@@ -1,7 +1,13 @@
 import React from "react";
+import Firebase from "../../context/firebase";
 
+import { useContext } from "react";
+import { firebaseContext } from "../../context/firebase/firebaseContext";
 const Messages = () => {
-  return <div>Messages</div>;
+  // const { me } = useContext(firebaseContext);
+  // console.log(me);
+
+  return <div>{/* <Firebase /> */}</div>;
 };
 
 export default Messages;

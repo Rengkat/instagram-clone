@@ -8,20 +8,22 @@ import {
   RiVideoFill,
   MdAddBox,
   FaFacebookMessenger,
-  BsHeartFill,
+  BsHeart,
 } from "react-icons/all";
 const SideBar = () => {
   return (
-    <div className=" leading-[4rem] pl-5 pt-4">
+    <div className=" leading-[4rem] pl-5 pt-4 text-white">
       <div className="py-5">
-        {/* <img src={header} alt="" className="w-[8rem] h-10" /> */}
+        <h1 className=" font-light text-3xl font-display hidden lg:block">
+          Instagram
+        </h1>
       </div>
       <div className="conatiner">
         <div>
           {/* style for the link in the css file */}
           <NavLink className="link" to={"/home"}>
             <span>
-              <AiFillHome fontSize={30} />
+              <AiFillHome fontSize={28} />
             </span>
             <span className="link-name"> Home</span>
           </NavLink>
@@ -29,7 +31,7 @@ const SideBar = () => {
         <div>
           <NavLink className="link" to={""}>
             <span>
-              <FiSearch fontSize={30} />
+              <FiSearch fontSize={28} />
             </span>
             <span className="link-name"> Search</span>
           </NavLink>
@@ -37,7 +39,7 @@ const SideBar = () => {
         <div>
           <NavLink className="link" to={"/explore"}>
             <span>
-              <MdExplore fontSize={30} />
+              <MdExplore fontSize={28} />
             </span>
             <span className="link-name"> Explore</span>
           </NavLink>
@@ -45,7 +47,7 @@ const SideBar = () => {
         <div>
           <NavLink className="link" to={"/reels"}>
             <span>
-              <RiVideoFill fontSize={30} />
+              <RiVideoFill fontSize={28} />
             </span>
             <span className="link-name">Reels</span>
           </NavLink>
@@ -53,7 +55,7 @@ const SideBar = () => {
         <div>
           <NavLink className="link" to={"/inbox"}>
             <span>
-              <FaFacebookMessenger fontSize={30} />
+              <FaFacebookMessenger fontSize={28} />
             </span>
             <span className="link-name">Messages</span>
           </NavLink>
@@ -61,7 +63,7 @@ const SideBar = () => {
         <div>
           <NavLink className="link" to={"/notification"}>
             <span>
-              <BsHeartFill fontSize={30} />
+              <BsHeart fontSize={28} />
             </span>
             <span className="link-name">Notifications</span>
           </NavLink>
@@ -69,7 +71,7 @@ const SideBar = () => {
         <div>
           <NavLink className="link" to={"/create"}>
             <span>
-              <MdAddBox fontSize={30} />
+              <MdAddBox fontSize={28} />
             </span>
             <span className="link-name">Create</span>
           </NavLink>
