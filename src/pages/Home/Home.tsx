@@ -12,7 +12,7 @@ const Home = () => {
     <div
       className={`${
         allPosts
-          ? "bg-black pb-[7rem] md:pb-[10rem] px-2 relative w-[30rem] mx-auto"
+          ? "bg-black pb-[7rem] md:pb-[10rem] px-2 relative w-[25rem] mx-auto"
           : "h-[100vh] bg-black w-full"
       }`}>
       {/* Top nav only visible on mobile */}

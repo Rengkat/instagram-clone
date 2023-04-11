@@ -3,27 +3,28 @@ import { useEffect, useState, useContext } from "react";
 import AllPosat from "./AllPsat";
 import { Link } from "react-router-dom";
 import { app } from "../../context/firebase/firebaseConfig";
+import { getAuth, signOut } from "firebase/auth";
 import {
   getFirestore,
   collection,
-  addDoc,
   getDocs,
   setDoc,
   onSnapshot,
   query,
-  doc,
-  getDoc,
   where,
-  orderBy,
-  serverTimestamp,
-  deleteDoc,
 } from "firebase/firestore";
 import { firebaseContext } from "../../context/firebase/firebaseContext";
 const Profile = () => {
   const [userPosts, setUserPost] = useState<any>([]);
   const { user } = useContext(firebaseContext);
   const [followers, setFollowers] = useState<any>([]);
-
+  const auth = getAuth();
+  const handleSignOut = () => {
+    console.log("first");
+    signOut(auth)
+      .then(() => console.log("logout"))
+      .catch((err) => console.log(err));
+  };
   // console.log(userDetails, uid);
   // console.log(followers);
   const db = getFirestore(app);
@@ -80,6 +81,11 @@ const Profile = () => {
             <p className="text-left font-semibold text-xl">{user?.userName}</p>
             <button className="w-[60%] lg:w-[50%] bg-white cursor-pointer py-1 px-4 font-semibold text-black rounded-md">
               <Link to="/edit">Edit profile</Link>
+            </button>
+            <button
+              onClick={handleSignOut}
+              className="w-[60%] lg:w-[50%] bg-white cursor-pointer py-1 px-4 font-semibold text-black rounded-md">
+              Logout
             </button>
           </div>
           <div className="hidden gap-8 py-5  md:flex">
