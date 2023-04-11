@@ -10,7 +10,10 @@ import {
   FaFacebookMessenger,
   BsHeart,
 } from "react-icons/all";
+import { useContext } from "react";
+import { firebaseContext } from "../context/firebase/firebaseContext";
 const SideBar = () => {
+  const { user } = useContext(firebaseContext);
   return (
     <div className=" leading-[4rem] pl-5 pt-4 text-white">
       <div className="py-5">
@@ -44,14 +47,7 @@ const SideBar = () => {
             <span className="link-name"> Explore</span>
           </NavLink>
         </div>
-        <div>
-          <NavLink className="link" to={"/reels"}>
-            <span>
-              <RiVideoFill fontSize={28} />
-            </span>
-            <span className="link-name">Reels</span>
-          </NavLink>
-        </div>
+
         <div>
           <NavLink className="link" to={"/inbox"}>
             <span>
@@ -60,14 +56,7 @@ const SideBar = () => {
             <span className="link-name">Messages</span>
           </NavLink>
         </div>
-        <div>
-          <NavLink className="link" to={"/notification"}>
-            <span>
-              <BsHeart fontSize={28} />
-            </span>
-            <span className="link-name">Notifications</span>
-          </NavLink>
-        </div>
+
         <div>
           <NavLink className="link" to={"/create"}>
             <span>
@@ -79,7 +68,17 @@ const SideBar = () => {
         <div>
           <NavLink className="link" to={"/profile"}>
             <span>
-              <img src={image} alt="" className="w-8 h-8 rounded-full" />
+              {user?.profileImage ? (
+                <img
+                  src={user?.profileImage}
+                  alt=""
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                  <p className=" text-[10px] text-black">Image</p>
+                </div>
+              )}
             </span>
             <span className="link-name">Profile</span>
           </NavLink>

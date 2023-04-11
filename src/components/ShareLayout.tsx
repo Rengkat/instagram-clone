@@ -14,13 +14,13 @@ const ShareLayout = () => {
             <SideBar />
           </div>
           {/* this is hidden medium screen and above */}
-          <div className="md:hidden fixed bottom-0 right-0 left-0 bg-[#000000]">
+          <div className="md:hidden fixed z-50 bottom-0 right-0 left-0 bg-[#000000]">
             <MobileNave />
           </div>
         </nav>
         {/* =========== END OF NAV=========== */}
         {/* bg-[#121212] */}
-        <main className="md:ml-[15rem] lg:ml-[28rem] mx-auto">
+        <main className="md:ml-[15rem] lg:ml-[28rem] mx-auto ">
           <Outlet />
         </main>
       </div>

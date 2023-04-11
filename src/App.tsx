@@ -2,18 +2,19 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import {
   Create,
+  DetailProfile,
+  EditProfile,
   ErrorRoute,
   Explore,
   Home,
   Messages,
-  Notifications,
   Profile,
   ProtectedRoute,
-  Reels,
   ShareLayout,
   SignIn,
   SignUp,
 } from "./pages";
+
 import SavedLogin from "./pages/SignUp/SavedLogin";
 const App = () => {
   return (
@@ -22,18 +23,18 @@ const App = () => {
         <Route
           path="/"
           element={
-            // <ProtectedRoute>
-            <ShareLayout />
-            // </ProtectedRoute>
+            <ProtectedRoute>
+              <ShareLayout />
+            </ProtectedRoute>
           }>
           <Route index element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route path="create" element={<Create />} />
           <Route path="explore" element={<Explore />} />
           <Route path="inbox" element={<Messages />} />
-          <Route path="notification" element={<Notifications />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="reels" element={<Reels />} />
+          <Route path="edit" element={<EditProfile />} />
+          <Route path=":uid" element={<DetailProfile />} />
         </Route>
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />

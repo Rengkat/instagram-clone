@@ -1,25 +1,115 @@
 import { FaFacebookSquare } from "react-icons/all";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import phoneFrame from "../../assets/home-phones.png";
 import people from "../../assets/screenshot4.png";
-import { useFormik } from "formik";
-import Firebase from "../../context/firebase";
+import { firebaseContext } from "../../context/firebase/firebaseContext";
+import { app } from "../../context/firebase/firebaseConfig";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  setDoc,
+  onSnapshot,
+  query,
+  doc,
+  getDoc,
+  where,
+  orderBy,
+  serverTimestamp,
+} from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [userDetails, setUserDetails] = useState({
-    email,
-    userName,
-    password,
-  });
-  // console.log(userDetails);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [error, setError] = useState("");
+  const [loginError, setLonginError] = useState("");
+  const { users } = useContext(firebaseContext);
+  const navigate = useNavigate();
+  const db = getFirestore(app);
+  // console.log(users);
+
+  const usersCollectionRef = collection(db, "users");
+  // if user exist function
+  const doesUsernameExist = async (username: string) => {
+    const q = query(usersCollectionRef, where("userName", "==", username));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.size > 0;
+  };
+
+  // sign up function
+  const auth = getAuth();
+
+  const handleSignup = async (email: string, password: string) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      // assuming you have a "users" collection in your Firestore database
+      await addDoc(usersCollectionRef, {
+        uid: user.uid,
+        email: user.email,
+        userName,
+        fullName,
+        imageUrl: "",
+        phone: "",
+        birthDate: "",
+        gender: "",
+        website: "",
+        bio: "",
+        profileImage: "",
+        followers: [],
+        following: [],
+        post_count: 0,
+
+        // any other user data you want to store
+      });
+      // console.log("User signed up and stored to Firestore:", user);
+    } catch (error) {
+      // setError(error);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setUserDetails({ email, userName, password });
+    // call the user exist function
+    const userNameExist = await doesUsernameExist(userName);
+    if (
+      userName.trim() == "" ||
+      fullName.trim() == "" ||
+      password.trim() == "" ||
+      email.trim() == ""
+    ) {
+      setLonginError("Please enter all fileds");
+      // display message for 3 secod
+      setTimeout(() => {
+        setLonginError("");
+      }, 3000);
+      return;
+    } else {
+      if (userNameExist) {
+        setError("Sorry, username exist");
+        // display error message for 5 secod
+        setTimeout(() => {
+          setError("");
+        }, 5000);
+      } else {
+        // call the sign up function
+        await handleSignup(email, password);
+        navigate("/sign-in");
+      }
+    }
   };
 
   return (
@@ -100,6 +190,10 @@ const SignUp = () => {
               />
             </div>
             <div className=" text-xs font-normal">
+              <p className="text-red-500 text-left">{error && error}</p>
+              <p className="text-red-500 text-left">
+                {loginError && loginError}
+              </p>
               <p className="my-2 px-2">
                 People who use our service may have upload your contact
                 information on instagram. Learn more
