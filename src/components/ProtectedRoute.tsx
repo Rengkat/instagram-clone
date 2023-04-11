@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Navigate, Route } from "react-router-dom";
-import {
-  addUserToLocalStorage,
-  getUserFromLocalStorage,
-} from "../context/firebase/firebaseConfig";
+
 import { firebaseContext } from "../context/firebase/firebaseContext";
 type ProtectedRouteProps = {
   children: React.ReactNode;
 };
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { signUpUser } = useContext(firebaseContext);
+  const { signUpUser } = useContext<any>(firebaseContext);
   // console.log("me");
   const auth = getAuth();
   const [isAuthenticated, setIsAuthenticated] = useState(true);

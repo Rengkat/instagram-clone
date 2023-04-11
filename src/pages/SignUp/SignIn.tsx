@@ -1,15 +1,8 @@
 import { FaFacebookSquare } from "react-icons/all";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  addUserToLocalStorage,
-  app,
-} from "../../context/firebase/firebaseConfig";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const SignIn = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");

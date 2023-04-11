@@ -28,7 +28,7 @@ interface propsType {
   post: any;
 }
 const MainContain = ({ post }: propsType) => {
-  const { user, openComments, handleLiked } = useContext(firebaseContext);
+  const { user, openComments, handleLiked } = useContext<any>(firebaseContext);
 
   const db = getFirestore(app);
   const commentsRef = collection(db, "comments");
